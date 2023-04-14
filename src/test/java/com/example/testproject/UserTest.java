@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 public class UserTest {
     User user = new User("capybara", "capybara@gmail.com");
     User userTest = new User();
+    User sameUser = new User("axolotl@gmail", "axolotl@gmail");
 
     @BeforeAll
     static void runTest() {
@@ -31,8 +32,10 @@ public class UserTest {
     @Test
     @DisplayName("data withdrawal check")
     void checkDataIsNull() {
-        Assertions.assertNull(userTest.getLogin());
-        Assertions.assertNull(userTest.getEmail());
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            userTest.loginVerification();
+            userTest.emailVerification();
+        });
     }
     @Test
     @DisplayName("check email by signs @ and .")
@@ -40,8 +43,14 @@ public class UserTest {
         Assertions.assertTrue(user.getEmail().contains("@") && user.getEmail().contains("."));
     }
     @Test
+    @DisplayName("try to receive exception")
+    void checkWrongEmail() {
+        Assertions.assertThrows(NullPointerException.class, () -> sameUser.emailVerification());
+    }
+    @Test
     @DisplayName("check if login and email are the same")
     void checkIfLoginAndEmailIsEquals() {
         Assertions.assertNotEquals(user.getLogin(), user.getEmail());
+        //Assertions.assertThrows(IndexOutOfBoundsException.class, () -> sameUser.equals(sameUser));
     }
 }
