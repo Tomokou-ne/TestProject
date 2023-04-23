@@ -2,8 +2,8 @@ package com.example.testproject.users;
 
 public class User {
 
-    public String name;
-    public String login;
+    private String name;
+    private String login;
 
     public User(String name, String login) {
         this.name = name;

@@ -15,6 +15,7 @@ public class UserDaoImpl{
             one, two, three, four
     );
 
+
     public User getUserByName(String name) {
         return users.stream().filter(user -> name.equals(user.getName()))
                 .findAny()

@@ -5,14 +5,13 @@ import com.example.testproject.users.User;
 
 public class UserService {
 
-    UserDaoImpl userDao;
+    private UserDaoImpl userDao;
 
     public UserService(UserDaoImpl userDao) {
         this.userDao = userDao;
     }
 
     public boolean checkUserExist(User user) {
-        User a = userDao.getUserByName(user.getName());
-        return a != null;
+        return userDao.getUserByName(user.getName()) != null;
     }
 }
